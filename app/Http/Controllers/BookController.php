@@ -22,7 +22,7 @@ class BookController extends Controller
         $book->year = $request->year;
         $img = $request->file('image');
         $img_name = 'book_'.$book->title.'.'.$img->getClientOriginalExtension();
-        $path = $request->file('image')->move(public_path('/book_images'),$img_name);
+        $path = $request->file('image')->move(public_path('/book_images/'),$img_name);
         $book->image = $img_name;
         if($book->save()){
             return response()->json(["book is added successfully "],200);
