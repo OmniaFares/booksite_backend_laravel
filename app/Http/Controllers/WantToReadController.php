@@ -13,7 +13,7 @@ class WantToReadController extends Controller
         $read_books = WantToRead::orderBy('id','asc')->get();
         $books = [];
         foreach($read_books as $read_book){
-            $book = Book::findOrFail($read_book->id);
+            $book = Book::findOrFail($read_book->book_id);
             array_push($books, $book);
         }
         return response()->json($books);
