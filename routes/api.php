@@ -15,14 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/books','App\Http\Controllers\BookController@index');
+Route::get('/book/{id}','App\Http\Controllers\BookController@index_id');
 Route::post('/add_book','App\Http\Controllers\BookController@store');
-Route::put('/update_book','App\Http\Controllers\BookController@update');
+Route::post('/update_book','App\Http\Controllers\BookController@update');
 Route::delete('/delete_book/{id}','App\Http\Controllers\BookController@destroy');
 
-Route::get('/read_books','App\Http\Controllers\ReadController@index');
-Route::post('/add_read_book','App\Http\Controllers\ReadController@store');
-Route::delete('/delete_read_book/{id}','App\Http\Controllers\ReadController@destroy');
+Route::get('/fav_books','App\Http\Controllers\FavController@index');
+Route::post('/add_fav_book','App\Http\Controllers\FavController@store');
+Route::delete('/delete_fav_book/{id}','App\Http\Controllers\FavController@destroy');
 
-Route::get('/want_to_read_books','App\Http\Controllers\WantToReadController@index');
-Route::post('/add_want_to_read_book','App\Http\Controllers\WantToReadController@store');
-Route::delete('/delete_want_to_read_book/{id}','App\Http\Controllers\WantToReadController@destroy');
