@@ -10,7 +10,7 @@ class BookController extends Controller
     
     public function index()
     {
-        $books = Book::orderBy('year','asc')->get();
+        $books = Book::orderBy('year','DESC')->get();
         return response()->json($books);
     }
 
@@ -58,10 +58,5 @@ class BookController extends Controller
         if($book->delete()){
             return response()->json(["book is deleted successfully "],200);
         }
-    }
-    public function search($selected, $valueToSearch)
-    {
-        $books = Book::where($selected,$valueToSearch)->get();
-        return response()->json($books);
     }
 }

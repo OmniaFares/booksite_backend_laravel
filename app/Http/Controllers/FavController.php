@@ -10,7 +10,7 @@ class FavController extends Controller
 {
     public function index()
     {
-        $read_books = Fav::orderBy('id','asc')->get();
+        $read_books = Fav::orderBy('id','DESC')->get();
         $books = [];
         foreach($read_books as $read_book){
             $book = Book::findOrFail($read_book->book_id);
@@ -32,10 +32,11 @@ class FavController extends Controller
     }
     public function destroy($id)
     {
-        $fav_book = Fav::findOrFail($id);
-        $original_book = Book::findOrFail($fav_book->book_id);
+        $original_book = Book::findOrFail($id);
         $original_book->is_fav = 0;
         $original_book->save();
+
+        $fav_book = Fav::where('book_id',$id);
         if($fav_book->delete()){
             return response()->json(["book is deleted from Fav List successfully "],200);
         }
