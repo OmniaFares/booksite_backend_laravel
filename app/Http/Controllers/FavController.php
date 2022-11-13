@@ -21,6 +21,9 @@ class FavController extends Controller
 
     public function store(Request $request)
     {
+        $original_book = Book::findOrFail($request->book_id);
+        $original_book->is_fav = 1;
+        $original_book->save();
         $book = new Fav();
         $book->book_id = $request->book_id;
         if($book->save()){
@@ -29,8 +32,11 @@ class FavController extends Controller
     }
     public function destroy($id)
     {
-        $book = Fav::findOrFail($id);
-        if($book->delete()){
+        $fav_book = Fav::findOrFail($id);
+        $original_book = Book::findOrFail($fav_book->book_id);
+        $original_book->is_fav = 0;
+        $original_book->save();
+        if($fav_book->delete()){
             return response()->json(["book is deleted from Fav List successfully "],200);
         }
     }

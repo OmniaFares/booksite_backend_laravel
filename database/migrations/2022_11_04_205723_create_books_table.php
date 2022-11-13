@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('author');
             $table->integer('year');
             $table->string('image')->nullable();
+            $table->boolean('is_fav')->default(0)->nullable();
             $table->timestamps();
         });
     }

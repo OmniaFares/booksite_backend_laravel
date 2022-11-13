@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('favs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('book_id',)->unsigned();
-            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');;
             $table->timestamps();
         });
     }
